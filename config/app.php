@@ -170,6 +170,8 @@ return [
        // Plank\Mediable\MediableServiceProvider::class,
         kanazaca\CounterCache\CounterCacheServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -220,6 +222,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Meta'    => Eusonlito\LaravelMeta\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         //'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
     ],
 
