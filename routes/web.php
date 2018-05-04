@@ -15,9 +15,15 @@
     return 'coming soon';
     //return view('welcome');
 });*/
+Route::group(['middleware'=>['auth']],function (){
+    Route::get('/category/{slug}/submit', 'ArticlesController@create')->name('frontend.category.submit');
+    Route::post('/category/{slug}/store', 'ArticlesController@store')->name('article.store');
+
+});
+
 Route::get('/', 'HomePageController@index')->name('frontend');
 Route::get('/category/{slug}', 'HomePageController@category')->name('frontend.category');
-Route::get('/category/{slug}/submit', 'HomePageController@create')->name('frontend.category.submit');
+
 Route::get('/articles/{slug}', 'HomePageController@post')->name('frontend.post');
 Route::get('/pages/{page}', 'HomePageController@page')->name('frontend.page');
 Route::post('/search', 'HomePageController@submitSearch')->name('frontend.submitSearch');

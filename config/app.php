@@ -169,6 +169,7 @@ return [
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
        // Plank\Mediable\MediableServiceProvider::class,
         kanazaca\CounterCache\CounterCacheServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
     ],
 
     /*

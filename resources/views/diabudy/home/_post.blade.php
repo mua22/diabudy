@@ -10,11 +10,16 @@
                 <span class="post-category">in <a href="{{route('frontend.category',$post->category->slug)}}">{{$post->category->title}}</a></span>
             </div>
             <div class="post-description">
+                @if(!isset($details))
                 <p>{{str_limit($post->content,700) }}</p>
-                <div class="post-read-more">
-                    <a href="{{route('frontend.post',$post->slug)}}" class="read-more">Read More <i class="fa fa-long-arrow-right"></i></a>
+                    <div class="post-read-more">
+                        <a href="{{route('frontend.post',$post->slug)}}" class="read-more">Read More <i class="fa fa-long-arrow-right"></i></a>
 
-                </div>
+                    </div>
+                @else
+                    <p>{{$post->content }}</p>
+                    @endif
+
             </div>
             <div class="post-meta">
                 <div class="post-date">

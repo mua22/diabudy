@@ -1,6 +1,6 @@
-@extends('diabudy.layouts.childmaster')
+@extends('diabudy.layouts.master')
 
-@section('child-content')
+@section('content')
     <div class="text-center">
         @include('diabudy.layouts._category_breadcrumb',compact('category'))
     </div>
@@ -20,7 +20,7 @@
     @include('diabudy.home._posts',compact('posts'))
 @endsection
 
-@section('child-sidebar')
+@section('sidebar')
     <div class="widget clearfix widget-categories">
         <h4 class="widget-title">Submit Artile for</h4>
         <ul class="list list-arrow-icons">

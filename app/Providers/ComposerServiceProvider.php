@@ -17,6 +17,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('diabudy.home.categories',CategoriesComposer::class);
+        View::composer('diabudy.pages.submit-article',CategoriesComposer::class);
         View::composer('diabudy.layouts._header',HeaderCategoriesComposer::class);
         View::composer('diabudy.layouts.master',HeaderCategoriesComposer::class);
     }

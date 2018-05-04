@@ -1,5 +1,5 @@
 <section class="content">
-    <div class="container">
+
         <!-- Blog post-->
         <div class="grid-layout post-3-columns m-b-30 grid-loaded">
             @foreach($categories as $category)
@@ -17,5 +17,5 @@
                 </div>
             @endforeach
         </div>
-    </div>
+
 </section>

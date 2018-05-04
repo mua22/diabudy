@@ -1,25 +1,14 @@
-@extends('diabudy.layouts.childmaster')
+@extends('diabudy.layouts.master')
 
-@section('child-content')
+@section('content')
     <div class="text-center">
         @include('diabudy.layouts._category_breadcrumb',['category'=>$post->category,'post'=>$post])
     </div>
-    <div id="" class="">
-        <div class="post-item">
-            <div class="post-item-wrap">
-                <div class="post-item-description">
-                    <h2>{{$post->title}}</h2>
-
-                    {{$post->content}}
-
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('diabudy.home._post',['post'=>$post,'details'=>true])
 
 @endsection
 
-@section('child-sidebar')
+@section('sidebar')
     @if(count($post->category->children)>0)
     <div class="widget clearfix widget-categories">
         <h4 class="widget-title">{{$post->category->title}}<br> Sub Categories</h4>

@@ -33,17 +33,12 @@ class HomePageController extends Controller
         return view('diabudy.home.post',compact('post'));
     }
 
-    public function create($slug)
-    {
-        $category = Category::where('slug',$slug)->first();
 
-        return view('diabudy.home.create',compact('category'));
-    }
 
     public function page($page)
     {
         if(View::exists("diabudy.pages.$page")){
-            return 'view Exists';
+            return view("diabudy.pages.$page");
 
         }else {
             abort(404);

@@ -55,7 +55,11 @@
     <!--VENDOR SCRIPT-->
     <script src="/diabudy/vendor/jquery/jquery-1.11.2.min.js"></script>
     <script src="/diabudy/vendor/plugins-compressed.js"></script>
-
+    <style>
+        section{
+            padding: 40px 0; !important;
+        }
+    </style>
     @yield('style')
 </head>
 
@@ -87,7 +91,11 @@
         <div class="container">
             <div class="row">
                 <div class="post-content col-md-9">
-                    @yield('content')
+
+                    <div class="post-content">
+                        @yield('content')
+                    </div>
+
                 </div>
                 <div class="sidebar sidebar-modern col-md-3">
                     @yield('sidebar')

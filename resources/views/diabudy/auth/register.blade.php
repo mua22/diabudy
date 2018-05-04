@@ -4,7 +4,7 @@
     <div class="row">
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="col-md-8 col-md-offset-2 center">
+            <div class="col-md-10 col-md-offset-1 center">
                 <div class="form-group {{ $errors->has('name') ? ' has-error has-feedback' : '' }}">
                     <label class="control-label" for="inputError2">
                         Name: {{ $errors->first('name') }}
