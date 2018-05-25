@@ -60,7 +60,7 @@ class LoginController extends Controller
             return view('auth.authenticate');
         }
 
-        return view('diabudy.auth.login');
+        return view('polo.auth.login',['hide_sidebar'=>true]);
     }
 
 

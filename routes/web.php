@@ -11,14 +11,22 @@
 |
 */
 
-/*Route::get('/', function () {
-    return 'coming soon';
-    //return view('welcome');
-});*/
-Route::group(['middleware'=>['auth']],function (){
-    Route::get('/category/{slug}/submit', 'ArticlesController@create')->name('frontend.category.submit');
-    Route::post('/category/{slug}/store', 'ArticlesController@store')->name('article.store');
+Route::get('/pusher', function () {
+    //return 'coming soon';
+    return view('pusher.pusher');
+});
+Route::get('pushertest', function () {
+    event(new App\Events\UserCreated('Someone'));
+    return "Event has been sent!";
+});
 
+Route::group(['middleware'=>['auth']],function (){
+    Route::get('/category/{slug}/create', ['uses'=>'ArticlesController@create'])->name('frontend.category.create');
+    Route::get('/category/{slug}/submit', 'ArticlesController@submit')->name('article.submit');
+    Route::post('/category/{slug}/store', 'ArticlesController@store')->name('article.store');
+    Route::patch('/posts/{id}/patch', 'ArticlesController@update')->name('article.update');
+    Route::get('/posts/{id}/edit','ArticlesController@edit')->name('frontend.article.edit');
+    Route::get('/my/articles','ArticlesController@index')->name('articles.index');
 });
 
 Route::get('/', 'HomePageController@index')->name('frontend');
@@ -42,6 +50,8 @@ Route::group([ 'prefix' => 'my', 'namespace' => 'Dashboard','middleware'=>['auth
     Route::get('logbook/{id}','LogbookController@destroy')->name('logbook.delete');
     Route::get('logbook/edit/{id}','LogbookController@editSugar')->name('logbook.edit');
     Route::post('logbook/edit/{id}','LogbookController@updateSugar')->name('logbook.sugar.update');
+    Route::resource('diary','DiaryController');
+    Route::get('diarydata','DiaryController@data')->name('diary.data');
 });
 //Route::get('/home', 'HomeController@index')->name('home');
 

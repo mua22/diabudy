@@ -13,7 +13,10 @@ class HomePageController extends Controller
 {
     public function index()
     {
-        return view('diabudy.home');
+        Meta::set('title', "Web portal for diabetics");
+        Meta::set('description', "Diabudy provides resources, tools and articles about diabetes. Sugar Level Record Keeping and diary management are two major contributions");
+        $hide_sidebar = true;
+        return view('polo.home',compact('hide_sidebar'));
     }
 
     public function category($slug)
@@ -23,7 +26,7 @@ class HomePageController extends Controller
         $posts = $category->posts()->where('published',1)->orderBy('created_at','DESC')->paginate(10);
         Meta::set('title', $category->title);
         Meta::set('description', $category->summary);
-        return view('diabudy.home.category',compact('category','posts'));
+        return view('polo.home.category',compact('category','posts'));
     }
     public function post($slug)
     {

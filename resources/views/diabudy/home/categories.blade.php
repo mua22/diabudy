@@ -1,7 +1,7 @@
 <section class="content">
 
         <!-- Blog post-->
-        <div class="grid-layout post-3-columns m-b-30 grid-loaded">
+        <div class="isotope" data-isotope-item-space="3" data-isotope-col="4" data-isotope-item=".post-item">
             @foreach($categories as $category)
                 <div class="post-item">
                     <div class="post-content-details">

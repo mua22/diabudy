@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
-
+use Auth;
+use Meta;
 class ArticlesController extends Controller
 {
     /**
@@ -14,7 +16,10 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $articles = $user->posts()->paginate(10);
+
+        return view('polo.articles.index',compact('articles'));
     }
 
     /**
@@ -26,7 +31,7 @@ class ArticlesController extends Controller
     {
         $category = Category::where('slug',$slug)->first();
 
-        return view('diabudy.articles.create',compact('category'));
+        return view('polo.articles.create',compact('category'));
     }
 
     /**
@@ -35,9 +40,22 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($slug, Request $request)
     {
-        //
+        //dd($_REQUEST);
+        $category = Category::where('slug',$slug)->first();
+        $user = Auth::user();
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->post_content;
+        $post->author_id = $user->id;
+        $post->category_id = $category->id;
+
+        $post->save();
+        if(isset($request->submit_new))
+            return redirect(route('article.submit',$post->id));
+        return redirect(route('frontend.article.edit',$post->id));
+
     }
 
     /**
@@ -59,7 +77,13 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $post = Post::find($id);
+        $post->submitted=0;
+        $post->published=0;
+        $post->save();
+        Meta::set('title', "Edit: ".$post->title);
+        return view('polo.articles.edit',compact('post'));
     }
 
     /**
@@ -71,7 +95,14 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->content = $request->post_content;
+
+        $post->save();
+        if(isset($request->submit_new))
+            return redirect(route('article.submit',$post->id));
+        return redirect(route('frontend.article.edit',$post->id));
     }
 
     /**
@@ -83,5 +114,19 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function submit($id)
+    {
+        $post = Post::find($id);
+        $post->submitted = 1;
+        $post->save();
+        return view('polo.articles.submitted',compact('post'));
+    }
+
+
+    public function publish_message()
+    {
+        
     }
 }

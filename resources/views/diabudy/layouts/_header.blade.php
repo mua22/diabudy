@@ -61,11 +61,14 @@
 
                                 </ul>
                             </li>
-                            <li><a href="{{route('frontend.category','prediabetes')}}">PreDiabetes</a></li>
-                            <li><a href="{{route('frontend.category','type-1')}}">Type 1</a></li>
-                            <li><a href="{{route('frontend.category','type-2')}}">Type 2</a></li>
-                            <li><a href="/about-us">About Us<span class="label label-danger infinit">HOT</span></a></li>
+                            <li><a href="{{route('diary.index')}}"><i class="fa fa-book"></i>Diary</a></li>
+                            <li><a href="{{route('logbook.index')}}"><i class="fa fa-book"></i>Diary</a></li>
+{{--                            <li><a href="{{route('frontend.category','prediabetes')}}">PreDiabetes</a></li>--}}
+                            {{--<li><a href="{{route('frontend.category','type-1')}}">Type 1</a></li>--}}
+                            {{--<li><a href="{{route('frontend.category','type-2')}}">Type 2</a></li>--}}
                             <li><a href="{{route('frontend.page','submit-article')}}">Submit Article<span class="label label-danger infinit">HOT</span></a></li>
+                            <li><a href="/about-us">About Us</a></li>
+
                             @guest
                                 <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                                 {{--<li><a class="nav-link" href="{{ route('login.facebook') }}">Facebook Login</a></li>--}}
@@ -73,7 +76,8 @@
                             @else
                                 <li class="dropdown"><a href="/my">My Buddy <i class="fa fa-user"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/my/logbook">My LogBook <i class="fa fa-bars"></i></a></li>
+                                        <li><a href="/my/logbook"><i class="fa fa-bars"></i>My LogBook </a></li>
+                                        <li><a href="{{route('diary.index')}}"><i class="fa fa-book"></i>My Diary </a></li>
                                     </ul>
                                 </li>
                                 @role('admin')

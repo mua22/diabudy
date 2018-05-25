@@ -72,6 +72,6 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
 
-        return view('diabudy.auth.register');
+        return view('polo.auth.register',['hide_sidebar'=>true]);
     }
 }

@@ -1,5 +1,9 @@
-@extends('diabudy.layouts.master')
+@extends('polo.layouts.master')
 
 @section('content')
-    @include('diabudy.home.categories')
+    @include('polo.home.categories')
 @endsection
+
+@section('scripts')
+
+    @endsection

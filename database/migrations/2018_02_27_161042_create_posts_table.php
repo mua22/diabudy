@@ -20,8 +20,8 @@ class CreatePostsTable extends Migration
             $table->text('content')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
-            $table->boolean('published')->default(1);
-            $table->boolean('submitted')->default(1);
+            $table->boolean('published')->default(0);
+            $table->boolean('submitted')->default(0);
             $table->integer('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
 

@@ -18,7 +18,7 @@
                     <span id="inputError2Status" class="sr-only">(error)</span>
                 </div>
             </div>
-            <div class="col-md-8 col-md-offset-2 center">
+            <div class="col-md-10 col-md-offset-1 center">
                 <div class="form-group {{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
                     <label class="control-label" for="eMail">
                         Email: {{ $errors->first('email') }}
@@ -32,7 +32,7 @@
                     <span id="inputErrorEmailStatus" class="sr-only">(error)</span>
                 </div>
             </div>
-            <div class="col-md-8 col-md-offset-2 center">
+            <div class="col-md-10 col-md-offset-1 center">
                 <div class="form-group {{ $errors->has('password') ? ' has-error has-feedback' : '' }}">
                     <label class="control-label" for="passwordField">
                         Password: {{ $errors->first('password') }}
@@ -46,7 +46,7 @@
                     <span id="inputErrorPasswordStatus" class="sr-only">(error)</span>
                 </div>
             </div>
-            <div class="col-md-8 col-md-offset-2 center">
+            <div class="col-md-10 col-md-offset-1 center">
                 <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error has-feedback' : '' }}">
                     <label class="control-label" for="inputErrorConfirm">
                         Confirm Password: {{ $errors->first('password_confirmation') }}
@@ -61,9 +61,9 @@
                 </div>
             </div>
 
-            <div class="col-md-8 col-md-offset-2 center">
+            <div class="col-md-10 col-md-offset-1 center">
                 <div class="col-md-12 form-group">
-                    <button type="submit" class="btn btn-primary">Register New Account </button><button class="btn btn-danger m-l-10" type="button">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Register New Account </button><a class="btn btn-danger m-l-10" type="button" href="/">Cancel</a>
 
                 </div>
             </div>

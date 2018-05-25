@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
+    protected $redirectTo = '/';
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -37,6 +38,6 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('diabudy.auth.passwords.email');
+        return view('polo.auth.passwords.email');
     }
 }

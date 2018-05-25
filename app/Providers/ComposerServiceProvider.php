@@ -20,6 +20,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('diabudy.pages.submit-article',CategoriesComposer::class);
         View::composer('diabudy.layouts._header',HeaderCategoriesComposer::class);
         View::composer('diabudy.layouts.master',HeaderCategoriesComposer::class);
+        View::composer('polo.layouts.master',HeaderCategoriesComposer::class);
+        View::composer('polo.home.categories',CategoriesComposer::class);
+
     }
 
     /**

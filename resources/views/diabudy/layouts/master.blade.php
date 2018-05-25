@@ -3,14 +3,15 @@
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116062933-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119561598-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-116062933-1');
+        gtag('config', 'UA-119561598-1');
     </script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,13 +92,15 @@
     <section class="content">
         <div class="container">
             <div class="row">
-                <div class="post-content col-md-9">
+                <div class="post-content @if(isset($hide_sidebar))col-md-12 @else col-md-9 @endif">
 
                     <div class="post-content">
+                        <h2>Polo Old</h2>
                         @yield('content')
                     </div>
 
                 </div>
+                @if(!isset($hide_sidebar))
                 <div class="sidebar sidebar-modern col-md-3">
                     @yield('sidebar')
 
@@ -111,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                    @endif
             </div>
         </div>
     </section>

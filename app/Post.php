@@ -11,7 +11,7 @@ class Post extends Model
     use Sluggable;
     use CounterCache;
     protected $fillable = ['title','content','author_id','category_id'];
-
+    protected $appends = ['status'];
     // you can have more than one counter
     public $counterCacheOptions = [
         'Category' => [
@@ -46,5 +46,15 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Tag');
+    }
+
+    public function getStatusAttribute()
+    {
+        //dd('status');
+        if($this->attributes['published'])
+            return "Published";
+        elseif($this->attributes['submitted'])
+            return 'Approval Waiting';
+        else return 'Editing Mode';
     }
 }

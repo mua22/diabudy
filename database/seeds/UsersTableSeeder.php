@@ -23,6 +23,12 @@ class UsersTableSeeder extends Seeder
         $admin->description  = 'User is allowed to manage and edit other users'; // optional
         $admin->save();
 
+        $editor = new Role();
+        $editor->name         = 'editor';
+        $editor->display_name = 'Editor'; // optional
+        $editor->description  = 'User is allowed to manage and edit other posts'; // optional
+        $editor->save();
+
 
         $user = new \App\User();
         $user->name = 'Usman';
@@ -32,6 +38,7 @@ class UsersTableSeeder extends Seeder
 
         $user->attachRole($admin);
         $user->attachRole($registered);
+        $user->attachRole($editor);
 
         //$user->readings()->saveMany(factory(App\Reading::class,60)->make());
     }

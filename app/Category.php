@@ -51,7 +51,7 @@ class Category extends Model
         /*$categories  = Cache::remember('categories', 300, function() {
             return Category::withDepth()->defaultOrder()->get();
         });*/
-        $categories = Category::all()->toTree();
+        $categories = Category::where('published',1)->get()->toTree();
         return $categories;
     }
 

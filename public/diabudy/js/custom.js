@@ -17,6 +17,10 @@ function notify_error(msg) {
         title: '<strong>Heads up!</strong>',
         message: msg
     },{
-        type: 'error'
+        type: 'success',
+        animate: {
+            enter: 'animated bounceIn',
+            exit: 'animated bounceOut'
+        }
     });
 }

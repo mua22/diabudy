@@ -1,10 +1,10 @@
 @extends('diabudy.layouts.master')
 
 @section('content')
-<div class="container">
+
 
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-sm-6 center">
             <h2 class="text-center">Forgot Password?</h2>
             <form class="form-validation" action="{{ route('password.email') }}" method="POST">
                 @csrf
@@ -19,5 +19,5 @@
             </form>
         </div>
     </div>
-</div>
+
 @endsection

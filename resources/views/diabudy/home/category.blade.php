@@ -24,7 +24,7 @@
     <div class="widget clearfix widget-categories">
         <h4 class="widget-title">Submit Artile for</h4>
         <ul class="list list-arrow-icons">
-            <li><a href="{{route('frontend.category.submit',$category->slug)}}">{{$category->title}}</a></li>
+            <li><a href="{{route('frontend.category.create',$category->slug)}}">{{$category->title}}</a></li>
         </ul>
     </div>
     @if(count($category->children)>0)

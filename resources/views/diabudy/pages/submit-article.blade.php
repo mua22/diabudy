@@ -22,15 +22,15 @@
         <h2>Diabetes Categories to Submit Articles</h2>
         <ul>
             @foreach($categories as $category)
-                <li><a href="{{route('frontend.category.submit',$category->slug)}}">{{$category->title}}</a>
+                <li><a href="{{route('frontend.category.create',$category->slug)}}">{{$category->title}}</a>
                     @if(count($category->children)>0)
                         <ul>
                             @foreach($category->children as $cat)
-                                <li><a href="{{route('frontend.category.submit',$cat->slug)}}">{{$cat->title}}</a>
+                                <li><a href="{{route('frontend.category.create',$cat->slug)}}">{{$cat->title}}</a>
                                     @if(count($cat->children)>0)
                                         <ul>
                                             @foreach($cat->children as $cat1)
-                                                <li><a href="{{route('frontend.category.submit',$cat1->slug)}}">{{$cat1->title}}</a></li>
+                                                <li><a href="{{route('frontend.category.create',$cat1->slug)}}">{{$cat1->title}}</a></li>
 
                                             @endforeach
                                         </ul>
