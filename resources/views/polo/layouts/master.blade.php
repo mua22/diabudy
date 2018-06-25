@@ -22,13 +22,20 @@
     <link href="/polo/css/responsive.css" rel="stylesheet">
     <link href="/polo/css/color-variations/orange.css" rel="stylesheet" type="text/css" media="screen">
     @yield('style')
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6813325630235078",
+            enable_page_level_ads: true
+        });
+    </script>
 </head>
 
 <body class="@if(!config('polo.show_loader')) no-page-loader @endif">
 
 <!-- Wrapper -->
-<div id="wrapper">
-
+<div id="wrapper" style="animation-duration: 500ms; opacity: 1;">
+    @include('polo.layouts.partials._topbar')
     <!-- Header -->
     <header id="header" class="header-dark">
         <div id="header-wrap">
@@ -79,11 +86,11 @@
     <!-- end: Header -->
 
     <!-- Content -->
-    <div id="page-content" class="sidebar-both">
+    <section id="page-content" class="sidebar-right">
         <div class="container">
             @yield('content')
         </div>
-    </div>
+    </section>
     <!-- end: Content -->
     <!-- Footer -->
     @include('polo.layouts.partials._footer')

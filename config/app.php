@@ -167,7 +167,7 @@ return [
         App\Providers\ComposerServiceProvider::class, //custom service provider
         //sortable
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
-       // Plank\Mediable\MediableServiceProvider::class,
+        Plank\Mediable\MediableServiceProvider::class,
         kanazaca\CounterCache\CounterCacheServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
@@ -223,7 +223,7 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Meta'    => Eusonlito\LaravelMeta\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        //'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
+        'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
     ],
 
 ];

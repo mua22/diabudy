@@ -16,6 +16,7 @@
         "laravel/scout": "^4.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "plank/laravel-mediable": "^2.7",
         "pusher/pusher-php-server": "^3.0",
         "spatie/laravel-medialibrary": "^7.1",
         "unisharp/laravel-ckeditor": "^4.7",

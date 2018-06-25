@@ -1,31 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers;
 
-use App\Diary;
+use App\Tag;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Auth;
-class DiaryController extends Controller
+
+class TagsController extends Controller
 {
+    public function ajax(Request $request)
+    {
+        $tags = array();
+        if($request->has('term')){
+            $tags = Tag::where('title','LIKE',"%{$request->term}%")->orderBy('title')->get();
+        }else {
+            $tags = Tag::orderBy('title')->get(array('title'));
+        }
+        return array_column($tags->toArray(),'title');
+
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('polo.diary.index');
-    }
+        $tags = Tag::orderBy('title')->get(array('title'));
+        if($request->ajax()){
 
-    public function data()
-    {
-        //dd('data');
-        $user = Auth::user();
-
-        $entries = $user->diary()->orderBy('created_at','DESC')->paginate(10);
-        //return $entries;
-        return view('polo.diary.entries',compact('entries'));
+            return $tags->toArray();
+        }
+        else return $tags;
     }
 
     /**
@@ -46,11 +52,7 @@ class DiaryController extends Controller
      */
     public function store(Request $request)
     {
-        $entry = new Diary();
-        $entry->entry = $request->entry;
-        $user = Auth::user();
-        $user->diary()->save($entry);
-        return view('polo.diary._entry',compact('entry'));
+        //
     }
 
     /**
@@ -84,11 +86,7 @@ class DiaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $entry = Diary::find($id);
-        $entry->entry = $request->entry;
-
-        $entry->save();
-        return $entry;
+        //
     }
 
     /**
@@ -99,6 +97,6 @@ class DiaryController extends Controller
      */
     public function destroy($id)
     {
-        return Diary::destroy($id);
+        //
     }
 }

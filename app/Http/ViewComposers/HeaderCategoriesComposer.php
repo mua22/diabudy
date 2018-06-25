@@ -17,8 +17,10 @@ class HeaderCategoriesComposer
 {
     public function compose(View $view)
     {
+
         $menuCategories = Category::getDefaultOrderCategories();
         $tags = Tag::getFrontPageTags();
+        //dd($menuCategories);
         $view->with(compact('menuCategories','tags'));
     }
 }

@@ -1,26 +1,16 @@
-@extends('polo.layouts.master-both-sidebars')
+@extends('polo.layouts.sidebar')
 
 @section('center')
-    <div class="text-center">
-        @include('diabudy.layouts._category_breadcrumb',compact('category'))
+    <div class="page-title">
+        <h1>{{$category->title}}</h1>
     </div>
-    <div id="" class="">
-        <div class="post-item">
-            <div class="post-item-wrap">
-                <div class="post-item-description">
-                    <h2>{{$category->title}}</h2>
+    @include('polo.layouts.partials._category_breadcrumb',compact('category'))
 
-                    {{$category->description}}
 
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @include('diabudy.home._posts',compact('posts'))
+    @include('polo.home.partials._posts',compact('posts'))
 @endsection
 
-@section('sidebar-left')
+@section('sidebar')
     <div class="widget clearfix widget-categories">
         <h4 class="widget-title"><a href="{{route('frontend.category.create',$category->slug)}}">Submit Article For: {{$category->title}}</a></h4>
 

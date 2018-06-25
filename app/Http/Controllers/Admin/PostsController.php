@@ -20,10 +20,34 @@ class PostsController extends Controller
         return view('admin.posts.index',compact('categories'));
     }
 
-    public function data()
+    public function data(Request $request)
     {
 
-        $posts = Post::paginate(5);
+        $posts = Post::query();
+        if($request->has('category')){
+
+            if($request->input('category')!='all'){
+                //dd($request->input('category'));
+                $posts->where('category_id',$request->input('category'));
+
+            }
+        }
+        if($request->has('search')){
+                $posts->where('title','LIKE','%'.$request->input('search').'%');
+
+        }
+        if($request->has('status')){
+            if($request->input('status')!='all')
+            {
+                if($request->input('status')=='submitted')
+                    $posts->where('submitted',1);
+                if($request->input('status')=='published')
+                    $posts->where('published',1);
+            }
+
+        }
+//        dd($posts->toSql());
+        $posts = $posts->paginate(5);
 
         return view('admin.posts.data',compact('posts'));
     }
@@ -92,6 +116,19 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+    }
+
+    public function approve(Request $request)
+    {
+     $post = Post::find($request->id);
+     $post->approve();
+     return view('admin.posts.data_row',compact('post'));
+    }
+    public function unpublish(Request $request)
+    {
+     $post = Post::find($request->id);
+     $post->unpublish();
+     return view('admin.posts.data_row',compact('post'));
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Tag;
+use App\User;
 use Illuminate\Support\Facades\View;
 use Intervention\Image\Exception\NotFoundException;
 use Meta;
@@ -33,7 +35,25 @@ class HomePageController extends Controller
         $post = Post::where('slug',$slug)->first();
         Meta::set('title', $post->title);
         Meta::set('description', $post->content);
-        return view('diabudy.home.post',compact('post'));
+        return view('polo.home.post',compact('post'));
+    }
+    public function author($slug)
+    {
+
+        $user = User::where('slug',$slug)->first();
+        $posts = $user->posts()->paginate(10);
+        Meta::set('title', $user->name);
+        Meta::set('description', "Articles by ".$user->name);
+        return view('polo.home.user',compact('posts','user'));
+    }
+    public function tag($slug)
+    {
+        $tag = Tag::where('slug',$slug)->first();
+        //return $tag;
+        $posts = $tag->posts()->paginate(10);
+        Meta::set('title', $tag->title);
+        Meta::set('description', "Diabetes Related Tag: ".$tag->title);
+        return view('polo.home.tag',compact('posts','tag'));
     }
 
 

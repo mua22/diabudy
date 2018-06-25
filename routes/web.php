@@ -28,15 +28,18 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('/posts/{id}/edit','ArticlesController@edit')->name('frontend.article.edit');
     Route::get('/my/articles','ArticlesController@index')->name('articles.index');
 });
-
+Route::get('tags/ajax','TagsController@ajax')->name('tags.ajax');
 Route::get('/', 'HomePageController@index')->name('frontend');
 Route::get('/category/{slug}', 'HomePageController@category')->name('frontend.category');
 
 Route::get('/articles/{slug}', 'HomePageController@post')->name('frontend.post');
+Route::get('/author/{name}', 'HomePageController@author')->name('frontend.author');
+Route::get('/tags/{slug}', 'HomePageController@tag')->name('frontend.tag');
 Route::get('/pages/{page}', 'HomePageController@page')->name('frontend.page');
 Route::post('/search', 'HomePageController@submitSearch')->name('frontend.submitSearch');
 Route::get('/search/{term}', 'HomePageController@search')->name('frontend.search');
-//Route::get('/','PagesController@about')->name('frontend');
+Route::resource('tags','TagsController');
+
 Auth::routes();
 Route::group([ 'prefix' => 'my', 'namespace' => 'Dashboard','middleware'=>['auth']], function () {
     Route::get('/','DashboardController@index');
@@ -79,4 +82,6 @@ Route::group([ 'prefix' => 'backend', 'namespace' => 'Admin','middleware'=>['rol
     Route::get('posts-data','PostsController@data')->name('posts.data');
     Route::get('categories/up/{id}','CategoriesController@up')->name('categories.up');
     Route::get('categories/down/{id}','CategoriesController@down')->name('categories.down');
+    Route::post('posts/approve','PostsController@approve')->name('posts.approve');
+    Route::post('posts/unpublish','PostsController@unpublish')->name('posts.unpublish');
 });

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Auth;
 use Meta;
+use MediaUploader;
 class ArticlesController extends Controller
 {
     /**
@@ -48,14 +50,32 @@ class ArticlesController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->post_content;
+        $post->summary = $request->post_summary;
         $post->author_id = $user->id;
         $post->category_id = $category->id;
 
         $post->save();
+        $this->settags($post,$request);
         if(isset($request->submit_new))
             return redirect(route('article.submit',$post->id));
         return redirect(route('frontend.article.edit',$post->id));
 
+    }
+
+    private function settags($post,$request)
+    {
+        if($request->tags) {
+
+            $tagIds = array();
+            //return explode(',',$request->tags);
+            foreach (explode(',', $request->tags) as $title) {
+                array_push($tagIds, Tag::firstOrCreate(['title' => $title]));
+
+            }
+            $post->tags()->sync(array_map(function ($t) {
+                return $t['id'];
+            }, $tagIds));
+        }
     }
 
     /**
@@ -95,11 +115,22 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $post = Post::find($id);
+
+//        if ($request->hasFile('post_image')) {
+//            //dd($request->file('post_image'));
+//            $media = MediaUploader::fromSource($request->file('post_image'))->toDestination('public','files')->upload();
+//            dd($media);
+//        }
+
+
         $post->title = $request->title;
         $post->content = $request->post_content;
+        $post->summary = $request->post_summary;
 
-        $post->save();
+           $post->save();
+        $this->settags($post,$request);
         if(isset($request->submit_new))
             return redirect(route('article.submit',$post->id));
         return redirect(route('frontend.article.edit',$post->id));

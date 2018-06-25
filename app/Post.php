@@ -57,4 +57,17 @@ class Post extends Model
             return 'Approval Waiting';
         else return 'Editing Mode';
     }
+
+    public function approve()
+    {
+        $this->published=1;
+        $this->submitted=0;
+        $this->save();
+    }
+    public function unpublish()
+    {
+        $this->published=0;
+        $this->submitted=0;
+        $this->save();
+    }
 }

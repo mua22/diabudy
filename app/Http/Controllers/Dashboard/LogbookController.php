@@ -20,7 +20,7 @@ class LogbookController extends Controller
     {
         $user = Auth::user();
         $categories = $user->categories()->orderBy('record_time','desc');
-        return view('diabudy.logbook.index',compact('categories'));
+        return view('polo.logbook.index',compact('categories'));
     }
 
     public function getIndexData()
@@ -28,7 +28,7 @@ class LogbookController extends Controller
         $user = Auth::user();
         $readings = $user->readings()->paginate(10);
 
-        return view('diabudy.logbook._index_rows',compact('readings'));
+        return view('polo.logbook._index_rows',compact('readings'));
     }
 
     public function storeSugarLevel(StoreSugarLevelRequest $request)
@@ -43,7 +43,7 @@ class LogbookController extends Controller
         $user = Auth::user();
         $categories = $user->categories;
 
-        return view('diabudy.logbook.create',compact('categories'));
+        return view('polo.logbook.create',compact('categories'));
     }
 
     public function editSugar($id)
@@ -51,7 +51,7 @@ class LogbookController extends Controller
         $user = Auth::user();
         $categories = $user->categories;
         $reading = Reading::find($id);
-        return view('diabudy.logbook.edit',compact('reading','categories'));
+        return view('polo.logbook.edit',compact('reading','categories'));
     }
     public function updateSugar($id,Request $request)
     {
@@ -70,7 +70,7 @@ class LogbookController extends Controller
         $user = Auth::user();
         $categories = $user->categories;
 
-        return view('diabudy.logbook.create',compact('categories'));
+        return view('polo.logbook.create',compact('categories'));
     }
 
     /**
@@ -181,6 +181,6 @@ class LogbookController extends Controller
     }
     public function charts()
     {
-        return view('diabudy.logbook.charts');
+        return view('polo.logbook.charts');
     }
 }
