@@ -76,7 +76,7 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $answer = App\Answer::find($id);
+        $answer = Answer::find($id);
         $answer->answer = $request->answer;
         $answer->question_id = $request->question_id;
         $answer->save();

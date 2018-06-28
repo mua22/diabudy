@@ -75,7 +75,7 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Admin', 'middleware' => ['r
     Route::get('/', 'DashboardController@index')->name('admin');
     Route::resource('users', 'UsersController');
     Route::resource('categories', 'CategoriesController');
-    Route::resource('posts', 'PostsController');
+    Route::resource('posts', 'PostsController'); //osama this is the route of admin posts table
     Route::get('posts-data', 'PostsController@data')->name('posts.data');
     Route::get('categories/up/{id}', 'CategoriesController@up')->name('categories.up');
     Route::get('categories/down/{id}', 'CategoriesController@down')->name('categories.down');
