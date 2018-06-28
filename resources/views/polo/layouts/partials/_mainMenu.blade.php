@@ -17,10 +17,13 @@
                 {{--<li><a href="{{route('frontend.category','type-2')}}">Type 2</a></li>--}}
                 <li><a href="{{route('frontend.page','submit-article')}}">Submit Article</a></li>
                 <li><a href="/about-us">About Us</a></li>
-                @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    {{--<li><a class="nav-link" href="{{ route('login.facebook') }}">Facebook Login</a></li>--}}
-                    <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+
+                 <!--Osama Inayat Changes Starts Here -->
+                    <li> <a href="{{ route('all.questions') }}">Explore Questions?</a></li>
+                    <!-- Changes Ends Here -->
+                    @guest
+                    <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>                 
+                    <li><a class="nav-link"href="route('register')">Register</a></li> 
                 @else
 
                 @endguest

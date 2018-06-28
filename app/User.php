@@ -3,8 +3,8 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
@@ -16,8 +16,8 @@ class User extends Authenticatable
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
     /**
@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
     public function charts()
     {
-        return $this->hasMany('App\ChartsData','user_id');
+        return $this->hasMany('App\ChartsData', 'user_id');
     }
     public function categories()
     {
@@ -58,10 +58,18 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany('App\Post','author_id');
+        return $this->hasMany('App\Post', 'author_id');
     }
     public function diary()
     {
         return $this->hasMany('App\Diary');
+    }
+    public function question()
+    {
+        return $this->hasMany('App\Question');
+    }
+    public function answer()
+    {
+        return $this->hasMany('App\Answer');
     }
 }

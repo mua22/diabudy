@@ -2,7 +2,6 @@
 @section('content')
     <div class="row">
         <div class="sidebar col-md-2">
-
                 @yield('sidebar-left')
         </div>
         <div class="content col-md-8">
