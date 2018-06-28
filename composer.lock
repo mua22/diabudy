@@ -2506,24 +2506,24 @@
         },
         {
             "name": "spatie/pdf-to-image",
-            "version": "1.2.2",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "9a5cb264a99e87e010c65d4ece03b51f821d55bd"
+                "reference": "a5f70c9d5d11677ba1fc3d7a0705d6dca4cc29db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/9a5cb264a99e87e010c65d4ece03b51f821d55bd",
-                "reference": "9a5cb264a99e87e010c65d4ece03b51f821d55bd",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/a5f70c9d5d11677ba1fc3d7a0705d6dca4cc29db",
+                "reference": "a5f70c9d5d11677ba1fc3d7a0705d6dca4cc29db",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "ext-imagick": "*",
+                "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "scrutinizer/ocular": "~1.1"
+                "phpunit/phpunit": "^6.2"
             },
             "type": "library",
             "autoload": {
@@ -2552,7 +2552,7 @@
                 "pdf-to-image",
                 "spatie"
             ],
-            "time": "2016-12-14T15:37:00+00:00"
+            "time": "2018-04-03T11:51:11+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -3627,16 +3627,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v1.8.4",
+            "version": "v1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "ccbba303a3a66a9706b50c98923af12e2f9ac02a"
+                "reference": "dc772d678b61eb4a056e470d27203ca017f82d19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/ccbba303a3a66a9706b50c98923af12e2f9ac02a",
-                "reference": "ccbba303a3a66a9706b50c98923af12e2f9ac02a",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/dc772d678b61eb4a056e470d27203ca017f82d19",
+                "reference": "dc772d678b61eb4a056e470d27203ca017f82d19",
                 "shasum": ""
             },
             "require": {
@@ -3662,14 +3662,14 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider"
+                        "UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider"
                     ],
                     "aliases": []
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Unisharp\\Laravelfilemanager\\": "src/"
+                    "UniSharp\\LaravelFilemanager\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3697,7 +3697,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2017-12-28T09:23:53+00:00"
+            "time": "2018-06-28T04:56:53+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

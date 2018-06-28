@@ -68,7 +68,11 @@ Route::get('/cache-clear', function () {
     //
 });
 
-Route::get('about-us', 'PagesController@about');
+//Route::get('about-us', 'PagesController@about');
+Route::get('about-us', function(){
+    return view('polo.pages.about-us');
+});
+
 //Route::get('backend', 'Admin\DashboardController@index')->name('admin');
 Route::group(['prefix' => 'backend', 'namespace' => 'Admin', 'middleware' => ['role:admin', 'auth']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
