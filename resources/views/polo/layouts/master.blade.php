@@ -13,6 +13,7 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="INSPIRO" /> 
     <meta name="description" content="Themeforest Template Polo"> <!-- Document title -->
     @include('polo.layouts.partials._meta')

@@ -6,27 +6,26 @@
 
 @if(Auth::check())
 <div class="container container-fluid">
- @if($ans = App\Answer::all())
-
-    @foreach ($ans as $answers)  
-    <div class="jumbotron">
-            {{ $answers->answer }}
-            <div class="row"> 
+    @foreach ($answer as $answers)
+    <div class="container container-fluid">
+           <div id="answerDiv">
+                {{ $answers->answer }}
+        </div>
+            <div class="row">
                     <div class="col-md-6 col-lg-6 col-xs-12">
-                    <p class="text-primary">Answered By:{{ (App\User::find($answers->answered_by))->name }}</p>
+                    <p class="text-primary">Answered By:</p>
                 </div>
              </div>
          </div>
  @endforeach
-@endif
         <form action="addinganswer" method="POST">
             {{ method_field('POST') }}
-            @csrf    
-            <textarea name="answer" class="form-control" cols="30" rows="10" placeholder="Enter Your Answer"></textarea>
-            <input type="text" name="question_id" value="{{ $questions->id }}">
-            <input type="text" name="answered_by" class="form-control" value="{{ Auth::id() }}">
+            @csrf
+            <textarea name="answer" id="myanswer" class="form-control" cols="30" rows="10" placeholder="Enter Your Answer"></textarea>
+            <input type="hidden" id="myquestionid" name="question_id" value="{{ $questions->id }}">
+            <input type="hidden" id="myauthid" name="answered_by" class="form-control" value="{{ Auth::id() }}">
             <br>
-            <input type="submit" class="btn btn-primary" value="Submit Answer">
+            <button type="submit" id="submitButton" class="btn btn-primary">Submit Answer</button>
         </form>
 </div>
 @else
@@ -35,4 +34,37 @@
     <a class="align-self-center" href="{{ route('login') }}">Login To Answer</a>
  </div>
  @endif
+
+
+<script>
+    window.onload = function(){
+        $('button').click(function(ev){
+            ev.preventDefault();
+            $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
+
+            $.ajax({
+                type:'POST',
+                url:'addinganswer',
+                data:{
+                    answer:$('#myanswer').val(),
+                    question_id:$('#myquestionid').val(),
+                    answered_by:$('#myauthid').val()
+                },
+                success:function(ev){
+                    document.getElementById('answerDiv').innerHTML = ($('#myanswer').val());
+                        $('#myanswer').val(" ");
+                }
+            });
+
+
+        });
+    }
+</script>
+
+
+
 @endsection
