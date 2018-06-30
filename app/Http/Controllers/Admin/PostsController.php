@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
@@ -17,39 +17,42 @@ class PostsController extends Controller
     public function index()
     {
         $categories = Category::withDepth()->defaultOrder()->get();
-        return view('admin.posts.index',compact('categories'));
+        return view('admin.posts.index', compact('categories'));
     }
 
     public function data(Request $request)
     {
 
         $posts = Post::query();
-        if($request->has('category')){
+        if ($request->has('category')) {
 
-            if($request->input('category')!='all'){
+            if ($request->input('category') != 'all') {
                 //dd($request->input('category'));
-                $posts->where('category_id',$request->input('category'));
+                $posts->where('category_id', $request->input('category'));
 
             }
         }
-        if($request->has('search')){
-                $posts->where('title','LIKE','%'.$request->input('search').'%');
+        if ($request->has('search')) {
+            $posts->where('title', 'LIKE', '%' . $request->input('search') . '%');
 
         }
-        if($request->has('status')){
-            if($request->input('status')!='all')
-            {
-                if($request->input('status')=='submitted')
-                    $posts->where('submitted',1);
-                if($request->input('status')=='published')
-                    $posts->where('published',1);
+        if ($request->has('status')) {
+            if ($request->input('status') != 'all') {
+                if ($request->input('status') == 'submitted') {
+                    $posts->where('submitted', 1);
+                }
+
+                if ($request->input('status') == 'published') {
+                    $posts->where('published', 1);
+                }
+
             }
 
         }
 //        dd($posts->toSql());
         $posts = $posts->paginate(5);
 
-        return view('admin.posts.data',compact('posts'));
+        return view('admin.posts.data', compact('posts'));
     }
 
     /**
@@ -60,7 +63,7 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::withDepth()->defaultOrder()->get();
-        return view('admin.posts.create',compact('categories'));
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -72,6 +75,15 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //
+        $posts = new Post();
+        $posts->title = $request->title;
+        $posts->category_id = $request->category_id;
+        // $posts->description = $request->$request;
+        $posts->meta_keywords = $request->meta_keywords;
+        $posts->meta_description = $request->meta_description;
+        $posts->author_id = $request->author_id;
+        $posts->save();
+        return redirect('backend/posts');
     }
 
     /**
@@ -121,14 +133,14 @@ class PostsController extends Controller
 
     public function approve(Request $request)
     {
-     $post = Post::find($request->id);
-     $post->approve();
-     return view('admin.posts.data_row',compact('post'));
+        $post = Post::find($request->id);
+        $post->approve();
+        return view('admin.posts.data_row', compact('post'));
     }
     public function unpublish(Request $request)
     {
-     $post = Post::find($request->id);
-     $post->unpublish();
-     return view('admin.posts.data_row',compact('post'));
+        $post = Post::find($request->id);
+        $post->unpublish();
+        return view('admin.posts.data_row', compact('post'));
     }
 }

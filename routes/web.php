@@ -69,7 +69,7 @@ Route::get('/cache-clear', function () {
 });
 
 //Route::get('about-us', 'PagesController@about');
-Route::get('about-us', function(){
+Route::get('about-us', function () {
     return view('polo.pages.about-us');
 });
 

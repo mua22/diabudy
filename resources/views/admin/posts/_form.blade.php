@@ -6,7 +6,7 @@
         >
         @if($errors->has('title'))
             <span class="help-block">
-                {{$errors->first('title')}}
+                {{ $errors->first('title') }}
             </span>
         @endif
 
@@ -42,6 +42,5 @@
     <div class="col-sm-10">
         <textarea type="text" name="meta_description" class="form-control ckeditor" id="meta_description" placeholder="Meta Description">@if(isset($post)){{$post->meta_description}}@endif</textarea>
     </div>
+    <input type="hidden" value="{{ Auth::id() }}" name="author_id">
 </div>
-
-

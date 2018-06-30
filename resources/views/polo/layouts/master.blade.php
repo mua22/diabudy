@@ -11,17 +11,18 @@
 
         gtag('config', 'UA-119561598-1');
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="INSPIRO" /> 
+    <meta name="author" content="INSPIRO" />
     <meta name="description" content="Themeforest Template Polo"> <!-- Document title -->
     @include('polo.layouts.partials._meta')
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600|Montserrat:400,500,600,700|Raleway:100,300,600,700,800" rel="stylesheet" type="text/css" /> 
-    <link href="/polo/css/plugins.css" rel="stylesheet"> 
-    <link href="/polo/css/style.css" rel="stylesheet"> 
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600|Montserrat:400,500,600,700|Raleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link href="/polo/css/plugins.css" rel="stylesheet">
+    <link href="/polo/css/style.css" rel="stylesheet">
     <link href="/polo/css/responsive.css" rel="stylesheet">
     <link href="/polo/css/color-variations/orange.css" rel="stylesheet" type="text/css" media="screen">
+
     @yield('style')
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -30,6 +31,7 @@
             enable_page_level_ads: true
         });
     </script>
+
 </head>
 
 <body class="@if(!config('polo.show_loader')) no-page-loader @endif">

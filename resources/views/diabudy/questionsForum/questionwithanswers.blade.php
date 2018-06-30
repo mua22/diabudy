@@ -8,12 +8,12 @@
 <div class="container container-fluid">
     @foreach ($answer as $answers)
     <div class="container container-fluid">
-           <div id="answerDiv">
                 {{ $answers->answer }}
-        </div>
             <div class="row">
                     <div class="col-md-6 col-lg-6 col-xs-12">
                     <p class="text-primary">Answered By:</p>
+                </div>
+                <div id="answerDiv">
                 </div>
              </div>
          </div>
@@ -36,7 +36,7 @@
  @endif
 
 
-<script>
+<!-- <script>
     window.onload = function(){
         $('button').click(function(ev){
             ev.preventDefault();
@@ -55,7 +55,7 @@
                     answered_by:$('#myauthid').val()
                 },
                 success:function(ev){
-                    document.getElementById('answerDiv').innerHTML = ($('#myanswer').val());
+                    $('#answerDiv').append("<div>"+($('#myanswer').val())+"</div>");
                         $('#myanswer').val(" ");
                 }
             });
@@ -63,7 +63,7 @@
 
         });
     }
-</script>
+</script> -->
 
 
 
