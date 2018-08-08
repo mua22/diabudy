@@ -1,27 +1,35 @@
 @extends('polo/layouts/master')
 @section('content')
-<form action="submitquestions" method="POST">
-    @csrf
-    {{ method_field('POST') }}
-    <div class="form-group">
-        <label for="question_header">Enter Question</label>
-        <input type="text" class="form-control" placeholder="Enter The Question Header" maxlength="200" name="question_header">
-    </div>
-
-    <div class="form-group">
-        <label for="question_description">Describe Question</label>
-        <textarea name="question_description" class="form-control" id="" cols="30" rows="10"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="category">category</label>
-        <input type="text" name="category" id="" class="form-control">
-    </div>
-
-    @if($id = Auth::id())
-    <input type="hidden" name="user_id" value={{ $id }}>
-    @endif
-
-    <input type="submit" class="btn btn-primary" value="Submit Question">
-</form>
+    <h1 class="text-center"> Questions Form</h1>
+     <div class="container container-fluid">
+            <form action="submitquestions" method="Post">
+                @csrf
+                {{method_field('POST')}}
+                <div class="form-group row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <label for="question_header">Enter The Question</label>
+                        <input type="text" name="question_header" id="question_header" class="form-control" required="true">
+                        
+                    </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <label for="category">Enter The Category</label>
+                            <input type="text" id="category" name="category" class="form-control" required="true">
+                        
+                        </div>
+                </div>
+                   <div class="form-group row">
+                        <label for="question_description">Explain Your Question</label>
+                        <textarea cols="25" rows="15" id="question_description" class="form-control">
+                        </textarea>        
+                    </div>
+                    {{-- <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> --}}
+                <button type="submit" class="btn btn-dark">Post Question</button>
+                <button type="reset" class="btn btn-danger">Reset Fields</button>
+            </form>
+     </div>
+     <script type="text/javascript">
+        window.onload = function(){
+                
+        }
+    </script>
 @stop

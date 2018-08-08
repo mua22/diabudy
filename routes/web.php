@@ -98,9 +98,9 @@ Route::get('questionform', function () {
 })->name('question.form');
 
 //This Route is for The Available Questions
-Route::get('question/asked', function () {
-    return view("diabudy/questionsForum/exploreQuestions");
-})->name('all.questions');
+Route::get('question/asked','QuestionsController@create')->name('all.questions');
+
+
 
 Route::get('question/ans/{id}', 'QuestionReading@viewAnswer');
 
