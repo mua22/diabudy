@@ -2,21 +2,38 @@
 @section('content')
 
 <h4>{{ $questions->question_header }}</h4>
+<hr>
 <p>{{ $questions->question_description }}</p>
 
 @if(Auth::check())
 <div class="container container-fluid">
     @foreach ($answer as $answers)
-    <div class="container container-fluid">
-                {{ $answers->answer }}
-            <div class="row">
-                    <div class="col-md-6 col-lg-6 col-xs-12">
-                    <p class="text-primary">Answered By:</p>
-                </div>
-                <div id="answerDiv">
-                </div>
+                 <hr>
+            <div class="container-grid">
+                        <div class="row-grid">
+                            <div>
+                                <a href="{{route('voting',$parameters = array('id' =>$answers->id,'votes' =>"1"))}}"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                            </div>
+                            <div>
+                            <span>0</span>
+                            </div>
+                            <div>
+                                <a href="{{route('voting',[$answers->id,"-1"])}}"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                            </div>
+                        </div>
+               
+             
+                        <div >
+                            {{ $answers->answer }} 
+                        </div>
+
+                        <div class="answer-background-color">
+                              <p class="text-primary">Answered By:</p>
+                        </div>
+           
              </div>
-         </div>
+         
+        
  @endforeach
         <form action="addinganswer" method="POST">
             {{ method_field('POST') }}

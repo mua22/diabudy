@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use Auth;
+use App\Answer;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -92,7 +94,21 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        $myQuestion = App\Question::destroy($id);
+        $myQuestion = Question::destroy($id);
         $myQuestion->save();
+    }
+
+
+    /**
+     *Will be called when Any One Wants To See Answer
+     */
+    public function viewAnswer($id)
+    {
+        $questions = Question::find($id);
+        if(Auth::check()){
+        $answer = Answer::where('question_id', $questions->id)->cursor();
+        return view('diabudy.questionsForum.questionwithanswers', compact('questions', 'answer'));
+        }
+        return view('diabudy.questionsForum.questionwithanswers', compact('questions', null));
     }
 }

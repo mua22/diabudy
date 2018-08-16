@@ -27,6 +27,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/posts/{id}/patch', 'ArticlesController@update')->name('article.update');
     Route::get('/posts/{id}/edit', 'ArticlesController@edit')->name('frontend.article.edit');
     Route::get('/my/articles', 'ArticlesController@index')->name('articles.index');
+    //This Route will Redirect User to Question Form
+    Route::get('questionform', function () {
+    return view('diabudy.questionsForum.questions');
+        })->name('question.form');
+
+    //This Route will Up Vote
+//    Route::get('voting','AnswerController@voting')->name("voting");
 });
 Route::get('tags/ajax', 'TagsController@ajax')->name('tags.ajax');
 Route::get('/', 'HomePageController@index')->name('frontend');
@@ -92,16 +99,14 @@ Route::resource('submitquestions', 'QuestionsController');
 
 Route::resource('answer', 'AnswerController');
 
-//This Route will Redirect User to Question Form
-Route::get('questionform', function () {
-    return view('diabudy.questionsForum.questions');
-})->name('question.form');
+
 
 //This Route is for The Available Questions
 Route::get('question/asked','QuestionsController@create')->name('all.questions');
 
 
 
-Route::get('question/ans/{id}', 'QuestionReading@viewAnswer');
+Route::get('question/ans/{id}', 'QuestionsController@viewAnswer')->name('redirect.to.answer');
 
 Route::resource('question/ans/addinganswer', 'AnswerController');
+Route::get('voting',array('as'=>'voting','uses'=>'AnswerController@voting'));

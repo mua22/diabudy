@@ -19,10 +19,10 @@
                 </div>
                    <div class="form-group row">
                         <label for="question_description">Explain Your Question</label>
-                        <textarea cols="25" rows="15" id="question_description" class="form-control">
+                        <textarea cols="25" rows="15" name="question_description" id="question_description" class="form-control">
                         </textarea>        
                     </div>
-                    {{-- <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> --}}
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                 <button type="submit" class="btn btn-dark">Post Question</button>
                 <button type="reset" class="btn btn-danger">Reset Fields</button>
             </form>

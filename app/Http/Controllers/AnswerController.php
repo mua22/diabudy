@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Vote;
 use App\Answer;
 use Illuminate\Http\Request;
 
@@ -90,6 +90,26 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        $answer = App\Answer()::destroy($id);
+        $answer = Answer()::destroy($id);
     }
+
+    public function voting($id,$votes){
+//        dd($id);
+
+        $answer = Answer::find($id);
+        if ($answer){
+            $vote = Vote();
+            $vote->userId = $answer->answered_by;
+            $vote->answerId = $answer->id;
+            if(!Vote::where('answerId',$answer->id)->where('userId',$answer->answered_by)->exits())
+            {
+                $totalVotes = Vote::where('answerId',$answer->id);
+                 if ($totalVotes != 0){ $vote->totalVotes = $totalVotes+$votes; }
+                 else $vote->totalVotes = $vote;
+                 $vote->save();
+             }
+        }
+        return redirect()->back();
+    }
+
 }

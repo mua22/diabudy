@@ -13650,3 +13650,26 @@ body.device-xs .col-md-3 .flickr-widget img {
 
 /*# sourceMappingURL=colors.css.map */
 
+
+/*CSS By Osama Inayat for Question Answer Forum**/
+.answer-background-color{
+    background-color:#f4f8ff;
+}
+.container-grid{
+  display: inline-grid;
+  grid-template-columns:50px 700px 150px;
+  grid-gap :50px;
+}
+.row-grid{
+  grid-template-rows:10px 10px 10px;
+}
+.row-grid > div {
+  text-align: center;
+}
+.glyphicon{
+  font-size:25px;
+  background-color:
+}
+.glyphicon:hover{
+  color:#e1e9f7
+}

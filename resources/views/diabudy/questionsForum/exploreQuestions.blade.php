@@ -8,7 +8,7 @@
 				<div class="row">
 					<div class="col-md-8 col-lg-6 col-sm-12 col-xs-12">
 
-						<h4 class="text-info text-primary">{{$questions->question_header}}</h4>
+						<a href="{{ route('redirect.to.answer',$questions->id) }}"><h4 class="text-info text-primary">{{$questions->question_header}}</h4></a>
 
 					</div>
 					<div class="col-md-4 col-lg-6 col-sm-12 col-xs-12">

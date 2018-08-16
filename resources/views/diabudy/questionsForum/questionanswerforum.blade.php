@@ -1,14 +1,5 @@
-@extends('polo/layouts/master')
-@section('content')
+@if(isset($comments))
 
 
 
-
-
-
-
-
-
-
-
-@endsection
+@endif
