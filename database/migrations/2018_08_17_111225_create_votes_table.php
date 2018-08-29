@@ -15,14 +15,19 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('userId');
-            $table->integer('answerId');
-            $table->integer('totalVotes');
+            $table->string('userId');
+            $table->string('answerId');
+            $table->string('totalVotes')->default(0);
+            $table->string('questionId');
             $table->timestamps();
         });
     }
 
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('votes');

@@ -8,14 +8,18 @@
 @if(Auth::check())
 <div class="container container-fluid">
     @foreach ($answer as $answers)
+
                  <hr>
             <div class="container-grid">
                         <div class="row-grid">
                             <div>
-                                <a href="{{route('voting',$parameters = array('id' =>$answers->id,'votes' =>"1"))}}"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                                <a href="{{route('voting',$parameters = array('id' => $answers->id,'votes' =>"1"))}}"><span class="glyphicon glyphicon-chevron-up"></span></a>
                             </div>
                             <div>
-                            <span>0</span>
+
+                                @foreach($answers->vote as $votes)
+                            <span>{{ $votes->totalVotes}}</span>
+                                    @endforeach
                             </div>
                             <div>
                                 <a href="{{route('voting',[$answers->id,"-1"])}}"><span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -30,17 +34,14 @@
                         <div class="answer-background-color">
                               <p class="text-primary">Answered By:</p>
                         </div>
-           
              </div>
-         
-        
  @endforeach
         <form action="addinganswer" method="POST">
             {{ method_field('POST') }}
             @csrf
-            <textarea name="answer" id="myanswer" class="form-control" cols="30" rows="10" placeholder="Enter Your Answer"></textarea>
-            <input type="hidden" id="myquestionid" name="question_id" value="{{ $questions->id }}">
-            <input type="hidden" id="myauthid" name="answered_by" class="form-control" value="{{ Auth::id() }}">
+                <textarea name="answer" id="myanswer" class="form-control" cols="30" rows="10" placeholder="Enter Your Answer"></textarea>
+                <input type="hidden" id="myquestionid" name="question_id" value="{{ $questions->id }}">
+                <input type="hidden" id="myauthid" name="answered_by" class="form-control" value="{{ Auth::id() }}">
             <br>
             <button type="submit" id="submitButton" class="btn btn-primary">Submit Answer</button>
         </form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Vote;
 use Auth;
 use App\Answer;
 use Illuminate\Http\Request;
@@ -79,7 +80,7 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $myQuestion = App\Question::find($id);
+        $myQuestion = Question::find($id);
         $myQuestion->question_header = $request->question_header;
         $myQuestion->question_description = $request->question_description;
         $myQuestion->category = $request->category;
@@ -106,8 +107,9 @@ class QuestionsController extends Controller
     {
         $questions = Question::find($id);
         if(Auth::check()){
-        $answer = Answer::where('question_id', $questions->id)->cursor();
-        return view('diabudy.questionsForum.questionwithanswers', compact('questions', 'answer'));
+        $answer = Answer::where('question_id', $questions->id)->get();
+        $vote = Vote::where('questionId',$questions->id);
+        return view('diabudy.questionsForum.questionwithanswers', compact('questions', 'answer','vote'));
         }
         return view('diabudy.questionsForum.questionwithanswers', compact('questions', null));
     }

@@ -46,7 +46,7 @@
 
             $.get(url,function (result) {
                 $('#postsData').html(result);
-            });
+        });
         }
         $(function () {
             //alert('callig data');

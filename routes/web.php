@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('questionform', function () {
     return view('diabudy.questionsForum.questions');
         })->name('question.form');
-
+    Route::get('voting/{id}/{votes}',array('as'=>'voting','uses'=>'AnswerController@voting'));
     //This Route will Up Vote
 //    Route::get('voting','AnswerController@voting')->name("voting");
 });
@@ -109,4 +109,4 @@ Route::get('question/asked','QuestionsController@create')->name('all.questions')
 Route::get('question/ans/{id}', 'QuestionsController@viewAnswer')->name('redirect.to.answer');
 
 Route::resource('question/ans/addinganswer', 'AnswerController');
-Route::get('voting',array('as'=>'voting','uses'=>'AnswerController@voting'));
+

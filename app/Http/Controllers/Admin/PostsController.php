@@ -78,7 +78,8 @@ class PostsController extends Controller
         $posts = new Post();
         $posts->title = $request->title;
         $posts->category_id = $request->category_id;
-        // $posts->description = $request->$request;
+         $posts->content = $request->description;
+
         $posts->meta_keywords = $request->meta_keywords;
         $posts->meta_description = $request->meta_description;
         $posts->author_id = $request->author_id;
@@ -95,6 +96,7 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -106,6 +108,10 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
+        $categories = Category::withDepth()->defaultOrder()->get();
+        $post = Post::all()->where('id',$id)->first();
+//        die($post);
+        return view('polo.articles.edit', compact('categories','post','id'));
     }
 
     /**

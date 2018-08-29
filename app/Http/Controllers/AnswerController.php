@@ -98,14 +98,17 @@ class AnswerController extends Controller
 
         $answer = Answer::find($id);
         if ($answer){
-            $vote = Vote();
+            $vote =new  Vote();
             $vote->userId = $answer->answered_by;
             $vote->answerId = $answer->id;
-            if(!Vote::where('answerId',$answer->id)->where('userId',$answer->answered_by)->exits())
+            if(!Vote::where('answerId',$answer->id)->where('userId',$answer->answered_by)->exists())
             {
                 $totalVotes = Vote::where('answerId',$answer->id);
-                 if ($totalVotes != 0){ $vote->totalVotes = $totalVotes+$votes; }
-                 else $vote->totalVotes = $vote;
+                if(!isset($totalVotes->totalVotes)){
+                    $vote->totalVotes = $votes;
+                }
+                else
+                     $vote->totalVotes = $totalVotes->totalVotes.$votes;
                  $vote->save();
              }
         }
